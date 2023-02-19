@@ -1,7 +1,15 @@
 import crypto from "crypto";
 import { json } from "@remix-run/node";
 
-import type { LoaderArgs } from "@remix-run/node"; // or cloudflare/deno
+import type { LoaderArgs } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node"; // or cloudflare/deno
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "sdhnv - EC SHA256 Tester",
+    description: "Test SHA256 for email query",
+  };
+};
 
 export async function loader({ request }: LoaderArgs) {
   const url = new URL(request.url);

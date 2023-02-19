@@ -4,7 +4,15 @@ import { json } from "@remix-run/node";
 
 import ContactForm from "../../components/ContactForm";
 
-import type { ActionArgs } from "@remix-run/node"; // or cloudflare/deno
+import type { ActionArgs } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "sdhnv - Contact Form",
+    description: "Contact Us",
+  };
+};
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
@@ -53,7 +61,6 @@ export default function ContactPage() {
       <hr />
       <Link to="/">Home Page</Link>
       <hr />
-      <h2 className="text-2xl text-center">Contact Page</h2>
       <ContactForm transition={transition} actionData={actionData} />
     </div>
   );

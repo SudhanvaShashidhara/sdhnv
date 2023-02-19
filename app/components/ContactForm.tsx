@@ -16,7 +16,7 @@ type Props = {
 export default function ContactForm({ transition, actionData }: Props) {
   const [contactFormSubmitted, setContactFormSubmitted] = React.useState(false);
   const [contactFormError, setContactFormError] = React.useState(false);
-  const formRef = React.useRef();
+  const formRef = React.useRef<HTMLFormElement>(null);
   const isContactFormSubmitting =
     transition.state === "submitting" &&
     transition.submission.formData.get("_action") === "contact_form";
@@ -85,10 +85,10 @@ export default function ContactForm({ transition, actionData }: Props) {
           </div>
         </div>
         <div
-          className={`bg-white py-16 px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12 ${
+          className={`py-16 px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12 ${
             contactFormSubmitted
               ? "grid items-center bg-green-200 p-2 rounded"
-              : ""
+              : "bg-white"
           }`}
         >
           <div className="mx-auto max-w-lg lg:max-w-none">
@@ -107,6 +107,7 @@ export default function ContactForm({ transition, actionData }: Props) {
                     type="text"
                     name="full-name"
                     id="full-name"
+                    required
                     autoComplete="name"
                     className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     placeholder="Full name"

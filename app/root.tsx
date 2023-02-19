@@ -11,6 +11,8 @@ import {
 import styles from "./tailwind.css";
 import Footer from "./components/Footer";
 
+// import type { ERR} from "@remix-run/react"
+
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export const meta: MetaFunction = () => ({
@@ -52,6 +54,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <Scripts />
         <LiveReload />
         <Footer />
+      </body>
+    </html>
+  );
+}
+
+type ErrorProps = {
+  error: Error;
+};
+
+export function ErrorBoundary({ error }: ErrorProps) {
+  console.error(error);
+  return (
+    <html>
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {/* add the UI you want your users to see */}
+        <Scripts />
       </body>
     </html>
   );
